@@ -1,0 +1,11 @@
+{
+  "manifest_version": 1,
+  "name": "YTShortsLimiter",
+  "version": "0.0.1",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/shorts/*"],
+      "js": ["Content.js"]
+    }
+  ]
+}
