@@ -1,22 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT removal</title>
+  <title>YouTube Shorts Limiter</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .stats {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .settings {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    input[type="number"] {
+      width: 60px;
+    }
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #ff0000;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
 </head>
-
 <body>
-    <div>
-        <h2>Shorts Remaining</h2>
-        <!--will show how many shorts left before being booted -->
-        <p id="count"></p>
-        
+  <div class="container">
+    <div class="header">
+      <h2>YouTube Shorts Limiter</h2>
     </div>
+    
+    <div class="stats">
+      <p>Today's stats:</p>
+      <p><strong><span id="shorts-count">0</span>/<span id="shorts-limit">10</span> Shorts watched</strong></p>
+      <div id="limit-reached" style="display: none; color: #ff0000; font-weight: bold;">
+        Daily limit reached!
+      </div>
+    </div>
+    
+    <div class="settings">
+      <div class="setting-row">
+        <label>Daily Shorts limit:</label>
+        <input type="number" id="limit-input" min="1" max="100" value="10">
+      </div>
+      
+      <div class="setting-row">
+        <label>Enable limiter:</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="enable-limiter" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
 
+      <div class="setting-row">
+        <button id="reset-btn">Reset Counter</button>
+        <button id="save-btn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
 </body>
-
-
 </html>
