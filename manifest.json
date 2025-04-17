@@ -1,16 +1,22 @@
+
 {
   "manifest_version": 3,
-  "name": "YTShortsLimiter",
-  "version": "0.1",
-  "permissions": ["storage", "tabs"],
-  
+  "name": "YTShorts Limiter",
+  "version": "1.0",
+  "description": "Limit your daily YouTube Shorts consumption",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "action": {
+    "default_popup": "index.html"
+  },
+
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["*://*.youtube.com/*"],
       "js": ["content.js"]
     }
   ],
-  "action":{
-    "default_popup": "index.html"
+  "background": {
+    "service_worker": "background.js"
   }
 }
